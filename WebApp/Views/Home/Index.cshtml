@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>F1 IS</h1>
+    <p class="lead">Tento informační systém je projekt do předmětu VIS.</p>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Uživatel</h2>
+        @if (User.Identity.IsAuthenticated)
+        {
+            <p>Uživatelské jméno: @User.Identity.Name</p>
+        }
+        else
+        {
+            <p>Uživatel není přihlášený</p>
+            <p>@Html.ActionLink("Přihlásit se", "Index", "Login",null, new { @class = "btn btn-default" })</p>
+        }
+    </div>
+    <div class="col-md-4">
+        <h2>Aplikace</h2>
+        <p>Kontaktujte administrátora pro nainsalování desktopové aplikace.</p>
+    </div>
+    <div class="col-md-4">
+        <h2>Informační systém</h2>
+        <p>ASP.NET MVC</p>
+        <p>MSSQL SERVER 2016</p>
+    </div>
+</div>

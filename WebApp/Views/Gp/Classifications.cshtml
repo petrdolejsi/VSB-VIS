@@ -1,0 +1,39 @@
+﻿@using Library.Models
+@model Dictionary<int, Library.Models.Classification>
+@{
+    ViewBag.Title = "Výsledky " + @ViewBag.Name;
+}
+
+<div>
+    <div class="pull-right">
+        @if (User.IsInRole("Admin") || (User.IsInRole("Gp") && (ViewBag.IfGp)))
+        {
+            <a class="btn btn-success btn-sm" href="@Url.Action("ClassificationsEdit", "Gp", new {id = ViewBag.Id})">Upravit</a>
+        }
+        <a class="btn btn-primary btn-sm" href="@Url.Action("Detail", "Gp", new {id = @ViewBag.Id})">Detail</a>
+    </div>
+    <h2>Výsledky @ViewBag.Name</h2>
+</div>
+@RenderPage("~/Views/Shared/InformationMessages.cshtml")
+<table class="table">
+    <thead>
+        <tr>
+            <th>Jezdec</th>
+            <th>Umístění</th>
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Value.Driver.FirstName @item.Value.Driver.LastName</td>
+            <td>@item.Value.Position</td>
+        </tr>
+    }
+</table>
+
+<nav aria-label="...">
+    <ul class="pager">
+        <li class="previous @(ViewBag.Prev==null?"disabled":"")"><a href="@(ViewBag.Prev!=null?Url.Action("Classifications", "Gp", new { id = ViewBag.Prev }):"#")"><span aria-hidden="true">&larr;</span> Předchozí</a></li>
+        <li class="next @(ViewBag.Next==null?"disabled":"")"><a href="@(ViewBag.Next!=null?Url.Action("Classifications", "Gp", new { id = ViewBag.Next }):"#")">Následující <span aria-hidden="true">&rarr;</span></a></li>
+    </ul>
+</nav>

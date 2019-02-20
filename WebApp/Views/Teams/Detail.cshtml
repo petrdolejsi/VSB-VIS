@@ -1,0 +1,38 @@
+﻿@model Library.Models.Teams
+@{
+    ViewBag.Title = "Detail týmu - " + @Model.Name;
+}
+
+<div>
+    @if (User.IsInRole("Admin") || (User.IsInRole("Team") && (ViewBag.IfTeam)))
+    {
+        <a class="btn btn-success btn-sm pull-right" href="@Url.Action("Edit", "Teams", new {id = @Model.Id})">Upravit</a>
+    }
+    <h2>Detail týmu - @Model.Name</h2>
+</div>
+@RenderPage("~/Views/Shared/InformationMessages.cshtml")
+<table class="table">
+    <tr>
+        <td>Název</td>
+        <td>@Model.Name</td>
+    </tr>
+    <tr>
+        <td>Dodavatel pneumatik</td>
+        <td>@Model.Tyres</td>
+    </tr>
+    <tr>
+        <td>Dodavatel motorů</td>
+        <td>@(Model.Manufacturer?.Name)</td>
+    </tr>
+    <tr>
+        <td>Stát</td>
+        <td>@(Model.State?.Name)</td>
+    </tr>
+</table>
+
+<nav aria-label="...">
+    <ul class="pager">
+        <li class="previous @(ViewBag.Prev==null?"disabled":"")"><a href="@(ViewBag.Prev!=null?Url.Action("Detail", "Teams", new { id = ViewBag.Prev }):"#")"><span aria-hidden="true">&larr;</span> Předchozí</a></li>
+        <li class="next @(ViewBag.Next==null?"disabled":"")"><a href="@(ViewBag.Next!=null?Url.Action("Detail", "Teams", new { id = ViewBag.Next }):"#")">Následující <span aria-hidden="true">&rarr;</span></a></li>
+    </ul>
+</nav>

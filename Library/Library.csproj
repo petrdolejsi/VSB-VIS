@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{33745A51-EC1F-43F4-8A10-6A6C09D06324}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Library</RootNamespace>
+    <AssemblyName>Library</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Classes\ButtonEnable.cs" />
+    <Compile Include="Classes\DateValidator.cs" />
+    <Compile Include="Classes\InsertItems.cs" />
+    <Compile Include="Classes\Logged.cs" />
+    <Compile Include="Classes\TeamDriversCountValidator.cs" />
+    <Compile Include="Mapping\Database.cs" />
+    <Compile Include="LazyLoadHelper.cs" />
+    <Compile Include="Mapping\PointsMapper.cs" />
+    <Compile Include="Mapping\GpMapper.cs" />
+    <Compile Include="Mapping\DriversMapper.cs" />
+    <Compile Include="Mapping\StatesMapper.cs" />
+    <Compile Include="Mapping\TeamsMapper.cs" />
+    <Compile Include="Mapping\ToDoMapper.cs" />
+    <Compile Include="Mapping\UsersMapper.cs" />
+    <Compile Include="Mapping\ManufacturersMapper.cs" />
+    <Compile Include="Mapping\ClassificationMapper.cs" />
+    <Compile Include="Models\Points.cs" />
+    <Compile Include="Models\Gp.cs" />
+    <Compile Include="Models\Drivers.cs" />
+    <Compile Include="Models\States.cs" />
+    <Compile Include="Models\Teams.cs" />
+    <Compile Include="Models\ToDo.cs" />
+    <Compile Include="Models\Users.cs" />
+    <Compile Include="Models\Manufacturers.cs" />
+    <Compile Include="Models\Classification.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="todo.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

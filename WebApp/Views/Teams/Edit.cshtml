@@ -1,0 +1,57 @@
+﻿@using Library.Models
+@model Teams
+@{
+    ViewBag.Title = "Úprava týmu - " + @ViewBag.Name;
+}
+
+<div>
+    <a class="btn btn-primary btn-sm pull-right" href="@Url.Action("Detail", "Teams", new {id = @Model.Id})">Zpět na detail</a>
+    <h2>Úprava týmu - @ViewBag.Name</h2>
+</div>
+@RenderPage("~/Views/Shared/InformationMessages.cshtml")
+@using (Html.BeginForm("Edit", "Teams", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.HiddenFor(model => model.Id)
+    <div class="form-group">
+        <div class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </div>
+        <div class="col-sm-10">
+            @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Name, null, new { @class = "help-block" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Tyres)
+        </div>
+        <div class="col-sm-10">
+            @Html.TextBoxFor(model => model.Tyres, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Tyres, null, new { @class = "help-block" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Manufacturer)
+        </div>
+        <div class="col-sm-10">
+            @Html.DropDownListFor(model => model.Manufacturer.Id, new SelectList((IEnumerable<Manufacturers>)ViewBag.Manufacturers, "ID", "Name", (Model.Manufacturer.Id)), new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Manufacturer, null, new { @class = "help-block" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-2">
+            @Html.DisplayNameFor(model => model.State)
+        </div>
+        <div class="col-sm-10">
+            @Html.DropDownListFor(model => model.State.Id, new SelectList((IEnumerable<States>)ViewBag.States, "ID", "Name", (Model.State.Id)), new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.State, null, new { @class = "help-block" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-success">Uložit</button>
+        </div>
+    </div>
+
+}

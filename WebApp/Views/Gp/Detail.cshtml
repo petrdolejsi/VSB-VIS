@@ -1,0 +1,49 @@
+﻿@model Library.Models.Gp
+@{
+    ViewBag.Title = "Detail GP";
+}
+
+<div>
+    <div class="pull-right">
+        @if (User.IsInRole("Admin") || (User.IsInRole("Gp") && (ViewBag.IfGp)))
+        {
+            <a class="btn btn-success btn-sm" href="@Url.Action("Edit", "Gp", new {id = @Model.Id})">Upravit</a>
+        }
+        <a class="btn btn-primary btn-sm" href="@Url.Action("Classifications", "Gp", new {id = @Model.Id})">Výsledky</a>
+    </div>
+    <h2>Detail @ViewBag.Name</h2>
+</div>
+@RenderPage("~/Views/Shared/InformationMessages.cshtml")
+<table class="table">
+    <tr>
+        <td>Název</td>
+        <td>@Model.Name</td>
+    </tr>
+    <tr>
+        <td>Okruh</td>
+        <td>@Model.Circuit</td>
+    </tr>
+    <tr>
+        <td>Datum</td>
+        <td>@(((DateTime)Model.Date).ToString("dd. MM. yyyy"))</td>
+    </tr>
+    <tr>
+        <td>Délka okruhu</td>
+        <td>@Model.Lenght</td>
+    </tr>
+    <tr>
+        <td>Počet kol</td>
+        <td>@Model.Laps</td>
+    </tr>
+    <tr>
+        <td>Stát</td>
+        <td>@(Model.State?.Name)</td>
+    </tr>
+</table>
+
+<nav aria-label="...">
+    <ul class="pager">
+        <li class="previous @(ViewBag.Prev==null?"disabled":"")"><a href="@(ViewBag.Prev!=null?Url.Action("Detail", "Gp", new { id = ViewBag.Prev }):"#")"><span aria-hidden="true">&larr;</span> Předchozí</a></li>
+        <li class="next @(ViewBag.Next==null?"disabled":"")"><a href="@(ViewBag.Next!=null?Url.Action("Detail", "Gp", new { id = ViewBag.Next }):"#")">Následující <span aria-hidden="true">&rarr;</span></a></li>
+    </ul>
+</nav>

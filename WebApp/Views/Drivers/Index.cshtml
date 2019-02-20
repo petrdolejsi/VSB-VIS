@@ -1,0 +1,30 @@
+﻿@model System.Collections.ObjectModel.Collection<Library.Models.Drivers>
+@{
+    ViewBag.Title = "Výpis jezdců";
+}
+
+<div>
+    @if (User.IsInRole("Admin"))
+    {
+        <a class="btn btn-primary btn-sm pull-right" href="@Url.Action("Add", "Drivers")">Přidat jezdce</a>
+    }
+    <h2>Výpis jezdců</h2>
+</div>
+@RenderPage("~/Views/Shared/InformationMessages.cshtml")
+<table class="table">
+    <thead>
+        <tr>
+            <th>Jméno</th>
+            <th>Příjmení</th>
+            <th></th>
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.FirstName</td>
+            <td>@item.LastName</td>
+            <td>@Html.ActionLink("Detail", "Detail", "Drivers", new { id = item.Id }, null)</td>
+        </tr>
+    }
+</table>

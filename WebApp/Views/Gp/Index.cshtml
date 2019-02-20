@@ -1,0 +1,24 @@
+﻿@model System.Collections.ObjectModel.Collection<Library.Models.Gp>
+@{
+    ViewBag.Title = "Výpis velkých cen";
+}
+
+<h2>Výpis velkých cen</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Název</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>@item.Name</td>
+        <td>@Html.ActionLink("Detail", "Detail", "Gp", new { id = item.Id }, null)</td>
+        <td>@Html.ActionLink("Výsledky", "Classifications", "Gp", new { id = item.Id }, null)</td>
+    </tr>
+    }
+</table>

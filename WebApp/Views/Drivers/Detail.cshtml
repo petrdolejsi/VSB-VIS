@@ -1,0 +1,46 @@
+﻿@model Library.Models.Drivers
+@{
+    ViewBag.Title = "Detail jezdce - " + @Model.FirstName + " " + @Model.LastName;
+}
+
+<div>
+    @if (User.IsInRole("Admin") || (User.IsInRole("Team") && (ViewBag.IfTeam)))
+    {
+        <a class="btn btn-success btn-sm pull-right" href="@Url.Action("Edit", "Drivers", new {id = @Model.Id})">Upravit</a>
+    }
+    <h2>Detail jezdce - @Model.FirstName @Model.LastName</h2>
+</div>
+@RenderPage("~/Views/Shared/InformationMessages.cshtml")
+<table class="table">
+    <tr>
+        <th>Jméno</th>
+        <td>@Model.FirstName</td>
+    </tr>
+    <tr>
+        <th>Příjmení</th>
+        <td>@Model.LastName</td>
+    </tr>
+    <tr>
+        <th>Startovní číslo</th>
+        <td>@Model.Number</td>
+    </tr>
+    <tr>
+        <th>Datum narození</th>
+        <td>@(((DateTime)Model.DateOfBirth).ToString("dd. MM. yyyy"))</td>
+    </tr>
+    <tr>
+        <th>Tým</th>
+        <td>@(Model.Team?.Name)</td>
+    </tr>
+    <tr>
+        <th>Národost</th>
+        <td>@(Model.State?.Nationality)</td>
+    </tr>
+</table>
+
+<nav aria-label="...">
+    <ul class="pager">
+        <li class="previous @(ViewBag.Prev==null?"disabled":"")"><a href="@(ViewBag.Prev!=null?Url.Action("Detail", "Drivers", new { id = ViewBag.Prev }):"#")"><span aria-hidden="true">&larr;</span> Předchozí</a></li>
+        <li class="next @(ViewBag.Next==null?"disabled":"")"><a href="@(ViewBag.Next!=null?Url.Action("Detail", "Drivers", new { id = ViewBag.Next }):"#")">Následující <span aria-hidden="true">&rarr;</span></a></li>
+    </ul>
+</nav>
